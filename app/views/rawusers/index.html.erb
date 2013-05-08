@@ -1,0 +1,79 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List rawdata")}", rawdata_path  %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.list", :default => "List rawuser")}", rawusers_path  %></li>
+      <!--li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rawuser_path %></li-->
+    </ul>
+  </div>
+  <div class="content">
+    <div class="control">
+      <a href="/rawusers-sync-pc" class="button" title="Sync Machine rec with Employee rec">
+        <img alt="Sync Machine rec with Employee rec" src="/images/web-app-theme/icons/table_refresh.png"> Sync
+      </a>
+      <a href="/rawusers-import" class="button">
+        <img alt="Import" src="/images/web-app-theme/icons/table_import.png"> Import
+      </a>
+    </div>
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Rawusers</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">Machine</th>
+          <th>Enroll Number</th>
+          <th>Name</th>
+          <th>Password</th>
+          <th>Privilege</th>
+          <th>Enabled</th>
+          <!--th>
+            <%= t("activerecord.attributes.rawuser._type", :default => t("activerecord.labels._type", :default => "_type")) %>
+          </th-->
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @rawusers.each do |rawuser| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= rawuser.machine_code %>
+          </td>
+          <td>
+            <%= rawuser.enroll_number %>
+          </td>
+          <td>
+            <%= rawuser.name %>
+          </td>
+          <td>
+            <%= rawuser.password %>
+          </td>
+          <td>
+            <%= rawuser.privilege %>
+          </td>
+          <td>
+            <%= rawuser.enabled %>
+          </td>
+          <!--td>
+            <%= link_to rawuser._type, rawuser_path(rawuser) %>
+          </td-->
+          <td>
+            <%= rawuser.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", rawuser_path(rawuser) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_rawuser_path(rawuser) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", rawuser_path(rawuser), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= paginate @rawusers  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

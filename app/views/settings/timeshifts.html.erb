@@ -1,0 +1,71 @@
+<div class="block" id="block-text">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><a href="/settings">Settings</a></li>
+      <li><a href="/settings/departments">Departments</a></li>
+      <li class="active"><a href="/settings/timeshifts">Timeshifts</a></li>
+      <li><a href="/settings/dayoffs">Dayoffs</a></li>
+      <li><a href="/settings/messages">Messages</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="control">
+      <a href="/timeshifts/new" class="button" title="New timeshift">
+        <img alt="New department" src="/images/web-app-theme/icons/clock_add.png"> New
+      </a>
+    </div>
+    <h2 class="title">Timeshifts</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">ID</th>
+          <th style="width:100px">Name</th>
+          <th>In/out</th>
+          <th>Break In/out</th>
+          <th style="width:100px">Begin/End In/out</th>
+          <th style="width:100px">Options</th>
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last" style="width:120px">&nbsp;</th>
+        </tr>
+        <% @timeshifts.each do |timeshift| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= timeshift._id %>
+          </td>
+          <td>
+            <%= timeshift.name %>
+          </td>
+          <td>
+            <%= timeshift.ts_time_s %>
+          </td>
+          <td>
+            <%= timeshift.break_time_s %>
+          </td>
+          <td>
+            <%= timeshift.in_time_s + timeshift.out_time_s %>
+          </td>
+          <td>
+          </td>
+          <td>
+            <%= distance_of_time_in_words_to_now(timeshift.created_at) %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", timeshift_path(timeshift) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_timeshift_path(timeshift) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", timeshift_path(timeshift), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= paginate @timeshifts  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

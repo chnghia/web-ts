@@ -1,0 +1,80 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", timesheets_path  %></li>
+      <!--li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_timesheet_path %></li-->
+    </ul>
+  </div>
+  <div class="content">
+    <div class="control">
+      <div style="float:left">
+      <%= select_tag "month_year", options_for_select(@months, :selected => @month), :class => 'select', :onchange => "window.location.href='/timesheets?month='+this.options[this.selectedIndex].value" %>
+      </div>
+      <a href="/timeshifts/new" class="button" title="Dayoff">
+        <img alt="Sync" src="/images/web-app-theme/icons/clock_add.png"> Dayoff
+      </a>
+      <a href="/timeshifts/new" class="button" title="Sync">
+        <img alt="Sync" src="/images/web-app-theme/icons/table_refresh.png"> Create
+      </a>
+      <a href="/timeshifts/new" class="button" title="Export">
+        <img alt="Export" src="/images/web-app-theme/icons/table_save.png"> Export
+      </a>
+    </div>
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Timesheets</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">ID</th>
+          <th>Employee</th>
+          <th>Date</th>
+          <th>In/out</th>
+          <th>Length</th>
+          <!--th>
+            <%= t("activerecord.attributes.timesheet._type", :default => t("activerecord.labels._type", :default => "_type")) %>
+          </th-->
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @timesheets.each do |timesheet| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= timesheet.id %>
+          </td>
+          <td>
+            <%= timesheet.employee.name %>
+          </td>
+          <td>
+            <%= timesheet.date %>
+          </td>
+          <td>
+            &nbsp;
+          </td>
+          <td>
+            &nbsp;
+          </td>
+          <!--td>
+            <%= link_to timesheet._type, timesheet_path(timesheet) %>
+          </td-->
+          <td>
+            <%= timesheet.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", timesheet_path(timesheet) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_timesheet_path(timesheet) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", timesheet_path(timesheet), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= paginate @timesheets  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

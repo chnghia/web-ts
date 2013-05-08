@@ -1,0 +1,43 @@
+
+  <div class="group">
+    <%= f.label :_type, t("activerecord.attributes.rawuser._type", :default => " type"), :class => :label %>
+    <%= f.text_field :_type, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :_id, t("activerecord.attributes.rawuser._id", :default => ""), :class => :label %>
+    <%= f.text_field :_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :machine_code, t("activerecord.attributes.rawuser.machine_code", :default => "Machine code"), :class => :label %>
+    <%= f.text_field :machine_code, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :enroll_number, t("activerecord.attributes.rawuser.enroll_number", :default => "Enroll number"), :class => :label %>
+    <%= f.text_field :enroll_number, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :name, t("activerecord.attributes.rawuser.name", :default => "Name"), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :password, t("activerecord.attributes.rawuser.password", :default => "Password"), :class => :label %>
+    <%= f.text_field :password, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), rawusers_path, :class => "text_button_padding link_button" %>
+</div>

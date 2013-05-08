@@ -1,0 +1,44 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rawdata_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rawdatum_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", rawdatum_path %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.rawdatum._type", :default => t("activerecord.labels._type", :default => " type")) %>:</b>
+          <%= @rawdatum._type %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawdatum._id", :default => t("activerecord.labels._id", :default => "")) %>:</b>
+          <%= @rawdatum._id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawdatum.machine_code", :default => t("activerecord.labels.machine_code", :default => "Machine code")) %>:</b>
+          <%= @rawdatum.machine_code %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawdatum.date", :default => t("activerecord.labels.date", :default => "Date")) %>:</b>
+          <%= @rawdatum.date %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawdatum.time", :default => t("activerecord.labels.time", :default => "Time")) %>:</b>
+          <%= @rawdatum.time %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_rawdatum_path(@rawdatum), :class => "button" %>
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), rawdatum_path(@rawdatum), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

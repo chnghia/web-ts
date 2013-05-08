@@ -1,0 +1,70 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List rawdata")}", rawdata_path  %></li>
+      <li class=""><%= link_to "#{t("web-app-theme.list", :default => "List rawuser")}", rawusers_path  %></li>
+      <!--li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rawdatum_path %></li-->
+    </ul>
+  </div>
+  <div class="content">
+    <div class="control">
+      <a href="/rawdata-import" class="button">
+        <img alt="Import" src="/images/web-app-theme/icons/table_import.png"> Import
+      </a>
+    </div>
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Rawdata</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">Machine</th>
+          <th>Enroll Number</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>InOut Mode</th>
+          <th>Verify Mode</th>
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @rawdata.each do |rawdatum| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= rawdatum.machine_code %>
+          </td>
+          <td>
+            <%= rawdatum.enroll_number %>
+          </td>
+          <td>
+            <%= rawdatum.date %>
+          </td>
+          <td>
+            <%= rawdatum.time.strftime("%H:%M:%S") %>
+          </td>
+          <td>
+            <%= rawdatum.inout_mode %>
+          </td>
+          <td>
+            <%= rawdatum.verify_mode %>
+          </td>
+          <td>
+            <%= distance_of_time_in_words_to_now(rawdatum.created_at) %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", rawdatum_path(rawdatum) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_rawdatum_path(rawdatum) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", rawdatum_path(rawdatum), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= paginate @rawdata  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

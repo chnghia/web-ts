@@ -1,0 +1,49 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rawusers_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rawuser_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", rawuser_path %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.rawuser._type", :default => t("activerecord.labels._type", :default => " type")) %>:</b>
+          <%= @rawuser._type %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawuser._id", :default => t("activerecord.labels._id", :default => "")) %>:</b>
+          <%= @rawuser._id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawuser.machine_code", :default => t("activerecord.labels.machine_code", :default => "Machine code")) %>:</b>
+          <%= @rawuser.machine_code %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawuser.enroll_number", :default => t("activerecord.labels.enroll_number", :default => "Enroll number")) %>:</b>
+          <%= @rawuser.enroll_number %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawuser.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @rawuser.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rawuser.password", :default => t("activerecord.labels.password", :default => "Password")) %>:</b>
+          <%= @rawuser.password %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_rawuser_path(@rawuser), :class => "button" %>
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), rawuser_path(@rawuser), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

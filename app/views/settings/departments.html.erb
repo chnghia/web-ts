@@ -1,0 +1,56 @@
+<div class="block" id="block-text">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><a href="/settings">Settings</a></li>
+      <li class="active"><a href="/settings/departments">Departments</a></li>
+      <li><a href="/settings/timeshifts">Timeshifts</a></li>
+      <li><a href="/settings/dayoffs">Dayoffs</a></li>
+      <li><a href="/settings/messages">Messages</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="control">
+      <a href="/departments/new" class="button" title="New department">
+        <img alt="New department" src="/images/web-app-theme/icons/chart_organisation_add.png"> New
+      </a>
+    </div>
+    <h2 class="title">Department</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">ID</th>
+          <th>Name</th>
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @departments.each do |depart| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= depart._id %>
+          </td>
+          <td>
+            <%= depart.name %>
+          </td>
+          <td>
+            <%= depart.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", department_path(depart) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_department_path(depart) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", department_path(depart), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= paginate @departments  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

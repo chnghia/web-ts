@@ -1,0 +1,49 @@
+<div class="group">
+  <%= f.label :name, t("activerecord.attributes.dayoff.name", :default => "Name"), :class => :label %>
+  <%= f.text_field :name, :class => 'text_field' %>
+</div>
+<div class="columns wat-cf">
+  <div class="column left">
+    <div class="group">
+      <%= f.label :type, t("activerecord.attributes.dayoff.type", :default => "Type"), :class => :label %>
+      <%#= f.text_field :type, :class => 'text_field' %>
+      <div style="width:30%; float: left;">
+      <%= f.radio_button :type, "holiday", :class => "radio" %>
+      <%= label_tag :dayoff_type_holiday, "Holiday" %>
+      </div>
+      <div style="">
+      <%= f.radio_button :type, "company", :class => "radio" %>
+      <%= label_tag :dayoff_type_company, "Company" %>
+      </div>
+    </div>
+    <div class="group">
+      <%= f.label :date, t("activerecord.attributes.dayoff.date", :default => "Date"), :class => :label %>
+      <%= f.date_select :date, :prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' } %>
+    </div>
+  </div>
+  <div class="column right">
+    <div class="group">
+      <%= f.label :occur, t("activerecord.attributes.dayoff.occur", :default => "Occurrence"), :class => :label %>
+      <div style="width:30%; float: left;">
+      <%= f.radio_button :occur, "once", :class => "radio" %>
+      <%= label_tag :dayoff_occur_once, "Once Time" %>
+      </div>
+      <div style="width:30%; float: left;">
+      <%= f.radio_button :occur, "yearly", :class => "radio" %>
+      <%= label_tag :dayoff_occur_yearly, "Yearly" %>
+      </div>
+      <div style="">
+      <%= f.radio_button :occur, "monthly", :class => "radio" %>
+      <%= label_tag :dayoff_occur_monthly, "Monthly" %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="group navform wat-cf">  
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+  <%= link_to t("web-app-theme.cancel", :default => "Cancel"), dayoffs_path, :class => "text_button_padding link_button" %>
+</div>
